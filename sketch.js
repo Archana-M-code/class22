@@ -2,31 +2,26 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 
-var engine,world;
-var object;
+var engine,world,object;
+
 function setup() {
-  var canvas = createCanvas(400,400);
+  createCanvas(400,400);
+  engine = Engine.create();
+  world = engine.world;
 
-engine = Engine.create();
-world = engine.world;
-
- var object_options = {
+  var options={
     isStatic: true
-
   }
-
-  object = Bodies.rectangle(200,100,50,50,object_options);
+  object = Bodies.rectangle(200,100,50,50,options);
   World.add(world,object);
 
   console.log(object);
-  console.log(object.position.x);
-  console.log(object.position.y);
+  
 }
 
 function draw() {
-  background(0);  
-  Engine.update(engine);
+  background(0); 
+  Engine.update(engine); 
   rectMode(CENTER);
   rect(object.position.x,object.position.y,50,50);
-  drawSprites();
 }
